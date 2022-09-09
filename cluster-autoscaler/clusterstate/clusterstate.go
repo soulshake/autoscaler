@@ -371,6 +371,7 @@ func (csr *ClusterStateRegistry) IsNodeGroupHealthy(nodeGroupName string) bool {
 	if !found {
 		// No nodes but target == 0 or just scaling up.
 		if acceptable.CurrentTarget == 0 || (acceptable.MinNodes == 0 && acceptable.CurrentTarget > 0) {
+			klog.Warning("No nodes but target == 0 or just scaling up.")
 			return true
 		}
 		klog.Warningf("Failed to find readiness information for %v", nodeGroupName)

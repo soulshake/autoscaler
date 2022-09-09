@@ -468,6 +468,8 @@ func (m *asgCache) isNodeGroupAvailable(group *autoscaling.Group) (bool, error) 
 	response, err := m.awsService.DescribeScalingActivities(input)
 	observeAWSRequest("DescribeScalingActivities", err, start)
 	if err != nil {
+		klog.Warningf("Couldn't describe scaling activities")
+		klog.Error(err)
 		return true, err // If we can't describe the scaling activities we assume the node group is available
 	}
 

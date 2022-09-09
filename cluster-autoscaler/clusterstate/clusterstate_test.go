@@ -420,6 +420,7 @@ func TestExpiredScaleUp(t *testing.T) {
 			{NodeGroup: provider.GetNodeGroup("ng1"), Time: now, Reason: metrics.Timeout},
 		},
 	})
+	// TODO: test CA tries next priority node group
 }
 
 func TestRegisterScaleDown(t *testing.T) {
