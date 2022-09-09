@@ -167,3 +167,5 @@ func TestPriorityExpanderCorrecltySkipsBadChangeConfig(t *testing.T) {
 	assert.EqualValues(t, configWarnConfigMapEmpty, event)
 	assert.Empty(t, ret)
 }
+
+// TODO: test priority expander falls back to lower priorities when node groups are degraded
