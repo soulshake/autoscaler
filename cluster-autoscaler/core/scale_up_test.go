@@ -704,6 +704,8 @@ func TestScaleUpUnhealthy(t *testing.T) {
 	assert.NoError(t, err)
 	// Node group is unhealthy.
 	assert.False(t, scaleUpStatus.WasSuccessful())
+
+	// TODO: can test priorities in a similar way?
 }
 
 func TestScaleUpNoHelp(t *testing.T) {

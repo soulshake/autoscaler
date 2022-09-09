@@ -392,9 +392,11 @@ func ScaleUp(context *context.AutoscalingContext, processors *ca_processors.Auto
 		if nodeGroup.Exist() && !clusterStateRegistry.IsNodeGroupSafeToScaleUp(nodeGroup, now) {
 			// Hack that depends on internals of IsNodeGroupSafeToScaleUp.
 			if !clusterStateRegistry.IsNodeGroupHealthy(nodeGroup.Id()) {
+				// TODO: we would expect to see this when ASG is DEGRADED, but it seems like we don't
 				klog.Warningf("Node group %s is not ready for scaleup - unhealthy", nodeGroup.Id())
 				skippedNodeGroups[nodeGroup.Id()] = notReadyReason
 			} else {
+				// This, we do see
 				klog.Warningf("Node group %s is not ready for scaleup - backoff", nodeGroup.Id())
 				skippedNodeGroups[nodeGroup.Id()] = backoffReason
 			}
